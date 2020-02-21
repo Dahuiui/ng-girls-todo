@@ -1,41 +1,24 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TodoItem } from '../interfaces/todo-item';
 
 @Component({
   selector: 'app-todo-item',
-  template: `
-    <div class="todo-item">
-    <input  type="checkbox"
-            class="todo-checkbox"
-            (click)="completeItem()"/>
-    </div>
-    <span class="todo-title" [ngClass]="{'todo-complete': item.completed}">
-      {{ item.title }}
-    </span>
-    <button class="btn btn-red" (click)="removeItem()">
-      remove
-    </button>
-  `,
+  templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.css']
 })
-export class TodoItemComponent implements OnInit {
+export class TodoItemComponent {
   @Input() item: TodoItem;
   @Output() remove: EventEmitter<TodoItem> = new EventEmitter();
   @Output() update: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  completeItem() {
+  public completeItem() {
     this.update.emit({
       item: this.item,
-      changes: {completed: !this.item.completed}
+      changes: { completed: !this.item.completed }
     });
   }
 
-  removeItem() {
+  public removeItem() {
     this.remove.emit(this.item);
   }
 

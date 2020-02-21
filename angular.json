@@ -113,6 +113,10 @@
               "devServerTarget": "todo-list:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
@@ -121,7 +125,7 @@
   "schematics": {
     "@schematics/angular": {
       "component": {
-        "inlineTemplate": true
+        "inlineTemplate": false
       }
     }
   }
